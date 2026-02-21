@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, User, ShoppingCart } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, [location]);
 
   const scrollToSection = (id: string) => {
     if (location.pathname !== '/') {
@@ -58,12 +72,16 @@ export function Header() {
             <button className="text-purple-700 hover:text-purple-900">
               <ShoppingCart size={24} />
             </button>
-            <button className="btn btn-outline text-sm py-1.5 px-3 rounded-full hover:bg-purple-50">
-              Üye Ol
-            </button>
-            <button className="text-purple-700 hover:text-purple-900">
-              <User size={24} />
-            </button>
+            {user ? (
+              <Link to="/alanim" className="text-purple-700 hover:text-purple-900 flex items-center justify-center w-10 h-10 rounded-full hover:bg-purple-50 transition-colors" title="Alanım">
+                <User size={24} />
+              </Link>
+            ) : (
+              <Link to="/auth" className="btn btn-outline text-sm py-1.5 px-3 rounded-full hover:bg-purple-50 flex items-center gap-2">
+                <User size={16} />
+                <span>Giriş / Üye Ol</span>
+              </Link>
+            )}
           </div>
 
           <button
@@ -94,9 +112,16 @@ export function Header() {
             <button onClick={() => scrollToSection('contact')} className="block text-purple-700 hover:text-purple-900 font-medium">
               İletişim
             </button>
-            <button className="btn btn-outline mt-4 w-full">
-              Üye Ol
-            </button>
+
+            {user ? (
+              <Link to="/alanim" onClick={() => setIsMenuOpen(false)} className="btn btn-outline mt-4 w-full text-center block bg-purple-50 text-purple-700">
+                Alanım (Profil)
+              </Link>
+            ) : (
+              <Link to="/auth" onClick={() => setIsMenuOpen(false)} className="btn btn-outline mt-4 w-full text-center block">
+                Giriş Yap / Üye Ol
+              </Link>
+            )}
           </nav>
         )}
       </div>
