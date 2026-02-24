@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  EXPERT
+  ADMIN
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum AppointmentType {
+  ONLINE
+  IN_PERSON
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+enum Rating {
+  POSITIVE
+  NEUTRAL
+  DIFFICULT
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password_hash String
+  role          Role      @default(USER)
+  full_name     String?
+  is_active     Boolean   @default(true)
+  created_at    DateTime  @default(now())
+
+  expert_profile ExpertProfile?
+  posts          BlogPost[]
+  saved_posts    SavedPost[]
+  appointments_as_user   Appointment[] @relation("UserAppointments")
+  appointments_as_expert Appointment[] @relation("ExpertAppointments")
+  feedbacks      SessionFeedback[]
+}
+
+model ExpertProfile {
+  id          String   @id @default(uuid())
+  user_id     String   @unique
+  user        User     @relation(fields: [user_id], references: [id])
+  full_name   String
+  title       String
+  bio         String
+  specialties String   // Stored as JSON string or comma separated
+  is_verified Boolean  @default(false)
+}
+
+model BlogPost {
+  id           String     @id @default(uuid())
+  title        String
+  content      String
+  category     String
+  author_id    String
+  author       User       @relation(fields: [author_id], references: [id])
+  status       PostStatus @default(DRAFT)
+  created_at   DateTime   @default(now())
+  published_at DateTime?
+
+  saved_by     SavedPost[]
+}
+
+model SavedPost {
+  id        String   @id @default(uuid())
+  user_id   String
+  user      User     @relation(fields: [user_id], references: [id])
+  post_id   String
+  post      BlogPost @relation(fields: [post_id], references: [id])
+  created_at DateTime @default(now())
+
+  @@unique([user_id, post_id])
+}
+
+model Appointment {
+  id        String            @id @default(uuid())
+  user_id   String
+  user      User              @relation("UserAppointments", fields: [user_id], references: [id])
+  expert_id String
+  expert    User              @relation("ExpertAppointments", fields: [expert_id], references: [id])
+  datetime  DateTime
+  type      AppointmentType
+  status    AppointmentStatus @default(SCHEDULED)
+  created_at DateTime         @default(now())
+
+  feedback  SessionFeedback?
+}
+
+model SessionFeedback {
+  id             String      @id @default(uuid())
+  appointment_id String      @unique
+  appointment    Appointment @relation(fields: [appointment_id], references: [id])
+  user_id        String
+  user           User        @relation(fields: [user_id], references: [id])
+  rating         Rating
+  comment        String?
+  created_at     DateTime    @default(now())
+}
