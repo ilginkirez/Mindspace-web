@@ -34,33 +34,33 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Hızlı Bağlantılar</h4>
             <ul className="space-y-2 text-purple-200">
-              <li><a href="#hero" className="hover:text-white transition-colors">Ana Sayfa</a></li>
-              <li><a href="#about" className="hover:text-white transition-colors">Hakkımızda</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Hizmetler</a></li>
-              <li><a href="#team" className="hover:text-white transition-colors">Ekip</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">İletişim</a></li>
+              <li><a href="/#hero" className="hover:text-white transition-colors">Ana Sayfa</a></li>
+              <li><a href="/#about" className="hover:text-white transition-colors">Hakkımızda</a></li>
+              <li><a href="/#services" className="hover:text-white transition-colors">Hizmetler</a></li>
+              <li><a href="/#team" className="hover:text-white transition-colors">Ekip</a></li>
+              <li><a href="/#contact" className="hover:text-white transition-colors">İletişim</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Hizmetler</h4>
             <ul className="space-y-2 text-purple-200">
-              <li><a href="#services" className="hover:text-white transition-colors">Bireysel Terapi</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Çift Terapisi</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Stres Yönetimi</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Mindfulness</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Online Eğitimler</a></li>
+              <li><a href="/service/individual" className="hover:text-white transition-colors">Bireysel Terapi</a></li>
+              <li><a href="/service/couples" className="hover:text-white transition-colors">Çift Terapisi</a></li>
+              <li><a href="/service/stress" className="hover:text-white transition-colors">Stres Yönetimi</a></li>
+              <li><a href="/service/mindfulness" className="hover:text-white transition-colors">Mindfulness</a></li>
+              <li><a href="/service/online-education" className="hover:text-white transition-colors">Online Eğitimler</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Yasal</h4>
             <ul className="space-y-2 text-purple-200">
-              <li><a href="#" className="hover:text-white transition-colors">Gizlilik Politikası</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Kullanım Koşulları</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">KVKK</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Çerez Politikası</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">İletişim</a></li>
+              <li><a href="/yasal/gizlilik" className="hover:text-white transition-colors">Gizlilik Politikası</a></li>
+              <li><a href="/yasal/kullanim" className="hover:text-white transition-colors">Kullanım Koşulları</a></li>
+              <li><a href="/yasal/kvkk" className="hover:text-white transition-colors">KVKK</a></li>
+              <li><a href="/yasal/cerez" className="hover:text-white transition-colors">Çerez Politikası</a></li>
+              <li><a href="/#contact" className="hover:text-white transition-colors">İletişim</a></li>
             </ul>
           </div>
         </div>

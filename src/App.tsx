@@ -7,6 +7,7 @@ import { AuthPage } from './components/AuthPage';
 import { DashboardPage } from './components/DashboardPage';
 import { ProfileSettingsPage } from './components/ProfileSettingsPage';
 import { SecurityPage } from './components/SecurityPage';
+import { LegalPage } from './components/LegalPage';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/ayarlar/profil" element={<ProfileSettingsPage />} />
           <Route path="/ayarlar/guvenlik" element={<SecurityPage />} />
+          <Route path="/yasal/:slug" element={<LegalPage />} />
         </Routes>
         <Footer />
       </div>
