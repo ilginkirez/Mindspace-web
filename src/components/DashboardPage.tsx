@@ -48,7 +48,7 @@ interface UserData {
     expert_profile?: { full_name: string };
 }
 
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = 'http://localhost:3000';
 
 export function DashboardPage() {
     const navigate = useNavigate();
@@ -171,9 +171,9 @@ export function DashboardPage() {
                             ) : (
                                 <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 text-center border border-purple-50">
                                     <p className="text-purple-800/60 mb-4">Henüz planlanmış bir seansın yok.</p>
-                                    <Link to="/service/bireysel" className="text-purple-600 font-medium hover:text-purple-700 inline-flex items-center hover:underline">
+                                    <a href="/#services" className="text-purple-600 font-medium hover:text-purple-700 inline-flex items-center hover:underline">
                                         Destek seçeneklerini incele <ChevronRight size={16} />
-                                    </Link>
+                                    </a>
                                 </div>
                             )}
 
@@ -278,13 +278,13 @@ export function DashboardPage() {
                         <section className="animate-slideUp" style={{ animationDelay: '0.3s' }}>
                             <h2 className="text-xl font-semibold text-purple-900 mb-6">Ayarlar</h2>
                             <div className="space-y-3">
-                                <button className="w-full flex items-center justify-between p-4 rounded-2xl bg-white hover:bg-purple-50 transition-colors text-left group border border-transparent hover:border-purple-100 shadow-sm">
+                                <button onClick={() => navigate('/ayarlar/profil')} className="w-full flex items-center justify-between p-4 rounded-2xl bg-white hover:bg-purple-50 transition-colors text-left group border border-transparent hover:border-purple-100 shadow-sm">
                                     <span className="flex items-center gap-3 text-purple-900/80 group-hover:text-purple-900">
                                         <UserIcon size={18} className="text-purple-400 group-hover:text-purple-600" /> Kişisel Bilgiler
                                     </span>
                                     <ChevronRight size={16} className="text-purple-200 group-hover:text-purple-400" />
                                 </button>
-                                <button className="w-full flex items-center justify-between p-4 rounded-2xl bg-white hover:bg-purple-50 transition-colors text-left group border border-transparent hover:border-purple-100 shadow-sm">
+                                <button onClick={() => navigate('/ayarlar/guvenlik')} className="w-full flex items-center justify-between p-4 rounded-2xl bg-white hover:bg-purple-50 transition-colors text-left group border border-transparent hover:border-purple-100 shadow-sm">
                                     <span className="flex items-center gap-3 text-purple-900/80 group-hover:text-purple-900">
                                         <Settings size={18} className="text-purple-400 group-hover:text-purple-600" /> Güvenlik
                                     </span>

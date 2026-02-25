@@ -1,11 +1,17 @@
 import express from 'express';
 import * as savedPostController from '../controllers/savedPostController';
 import * as appointmentController from '../controllers/appointmentController';
+import * as meController from '../controllers/meController';
 import { protect } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
 router.use(protect);
+
+// Profile
+router.get('/profile', meController.getProfile);
+router.patch('/profile', meController.updateProfile);
+router.patch('/change-password', meController.changePassword);
 
 // Saved Posts
 router.get('/saved-posts', savedPostController.getSavedPosts);

@@ -4,7 +4,7 @@ import { Eye, EyeOff, Check, AlertCircle, ArrowRight } from 'lucide-react';
 
 type AuthMode = 'login' | 'signup';
 
-const BACKEND_URL = 'http://localhost:5000'; // Make sure this matches your backend
+const BACKEND_URL = 'http://localhost:3000'; // Make sure this matches your backend
 
 export function AuthPage() {
     const [mode, setMode] = useState<AuthMode>('signup');
